@@ -7,13 +7,13 @@ public class Crate : MonoBehaviour
     [SerializeField] AudioClip[] _clips;
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.relativeVelocity.magnitude > 5f)
+        if (collision.relativeVelocity.magnitude > 2f)
         {
             var clip = _clips[UnityEngine.Random.Range(0, _clips.Length)];
             GetComponent<AudioSource>().PlayOneShot(clip);
         }
 
-        if (collision.relativeVelocity.magnitude > 8f)
+        if (collision.relativeVelocity.magnitude > 7f)
         {
             gameObject.SetActive(false);
         }
