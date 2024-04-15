@@ -12,16 +12,21 @@ public class LevelController : MonoBehaviour
     private void OnEnable()
     {
         _monsters = FindObjectsOfType<Monster>();
+        var audioSource = GetComponent<AudioSource>();
     }
     // Update is called once per frame
     void Update()
     {
         if (MonstersAreAllDead())
-            GoToNextLevel();
+            StartCoroutine(GoToNextLevel());
     }
 
-    private void GoToNextLevel()
+    private IEnumerator GoToNextLevel()
     {
+        yield return new WaitForSeconds(1);
+        var audioSource = GetComponent<AudioSource>();
+        audioSource.Play();
+        yield return new WaitForSeconds(6);
         SceneManager.LoadScene(_nextLevelName);
     }
 
