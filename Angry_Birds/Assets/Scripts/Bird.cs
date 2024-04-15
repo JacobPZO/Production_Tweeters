@@ -10,6 +10,7 @@ public class Bird : MonoBehaviour
     private Vector2 _startPosition;
     Rigidbody2D _rigidbody2D;
     SpriteRenderer _spriteRenderer;
+    private LivesManager _livesManager;
 
     public bool IsDragging { get; private set; }
 
@@ -24,6 +25,7 @@ public class Bird : MonoBehaviour
     {
         _startPosition = _rigidbody2D.position;
         _rigidbody2D.isKinematic = true;
+        _livesManager = GameObject.Find("LivesManager").GetComponent<LivesManager>();
     }
 
     private void OnMouseDown()
@@ -45,6 +47,7 @@ public class Bird : MonoBehaviour
 
         _spriteRenderer.color = Color.white;
         IsDragging = false;
+        _livesManager.HP -= 1;
     }
 
     private void OnMouseDrag()
